@@ -6,10 +6,14 @@ const initialState = {
 
 const mainReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case "1":
-			return {};
-		case "2":
-			return {};
+		case "SEARCH":
+			return {
+				...state,
+				search: {
+					...state.search,
+					content: [...state.search.content, action.payload],
+				},
+			};
 		default:
 			return state;
 	}
