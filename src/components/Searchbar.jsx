@@ -2,7 +2,10 @@ import { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import logo from "../assets/logo.png";
-import CityInfo from "./CityInfo";
+import thermometer from "../assets/thermometer.png";
+import clearsky from "../assets/clearsky.png";
+import windlogo from "../assets/windlogo.png";
+import citylogo from "../assets/citylogo.png";
 
 const auth = "62d27c813f254c1c799dabc5dfdd9ada"
 
@@ -11,7 +14,9 @@ const Searchbar = () => {
     const [search, setSearch] = useState('')
     const [city, setCity] = useState([])
     const [weather, setWeather] = useState([])
-    const [weather2, setWeather2] = useState("");
+    const [sky, setSky] = useState("");
+    const [temp, setTemp] = useState("");
+    const [wind, setWind] = useState('');
 
             const handleChange = (e) => {
             setSearch(e.target.value)
@@ -34,11 +39,13 @@ const Searchbar = () => {
 
         const weatherFetch = async () => {
             try {
-                const weatherObj = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${city[0].lat}&lon=${city[0].lon}&appid=${auth}`)
+                const weatherObj = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${city[0].lat}&lon=${city[0].lon}&appid=${auth}&units=metric`)
                 if (weatherObj.ok) {
                     const weatherData = await weatherObj.json()
                     setWeather(weatherData)
-                    setWeather2(weatherData.weather[0].main)
+                    setSky(weatherData.weather[0].main)
+                    setTemp(weatherData.main.temp)
+                    setWind(weatherData.wind.speed)
                 } else {
                     alert('Error fetching results 2')
                 }
@@ -70,7 +77,21 @@ const Searchbar = () => {
                 </Form>
                 </Col>
                 <Col xs={10} className="mx-auto m-3">
-                        {weather && (<p className="p-4 fs-3 m-3 text-light bg-secondary rounded bg-opacity-50">The weather today in {weather.name} seems to be like {weather2}!</p>
+                        {weather && (
+                            <>
+                            <p className="p-4 fs-5 m-3 text-light bg-secondary rounded bg-opacity-50">
+                                <img src={citylogo} alt="city-logo" width="40px"/> Selected city: {weather.name}</p>
+                            <p className="p-4 fs-5 m-3 text-light bg-secondary rounded bg-opacity-50">
+                                <img src={clearsky} alt="sky-logo" width="40px" /> Sky: {sky}
+                            </p>
+                            <p className="p-4 fs-5 m-3 text-light bg-secondary rounded bg-opacity-50">
+                                <img src={windlogo} alt="wind-logo" width="40px"/> Wind speed: {wind} km/h
+                            </p>
+                            <p className="p-4 fs-5 m-3 text-light bg-secondary rounded bg-opacity-50">
+                                <img src={thermometer} alt="temperature-logo" width="40px"/> Temperature: {temp} °C
+                            </p>
+                            </>
+
                     )}
                 </Col>
             </Row>
