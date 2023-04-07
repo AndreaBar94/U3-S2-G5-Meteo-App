@@ -66,8 +66,8 @@ const Searchbar = () => {
         return (
             <Container className="main">
             <Row>
-                <Col xs={10} className="mx-auto m-3">
-                    <img src={logo} alt="logo" className="img-fluid" />
+                <Col xs={10} className="mx-auto m-3 text-center">
+                    <img src={logo} alt="logo" className="img-fluid" width="200px"/>
                 <h1 className="p-4 m-3 text-light bg-secondary rounded bg-opacity-50">Look for your city weather!</h1>
                 </Col>
                 <Col xs={10} className="mx-auto">
