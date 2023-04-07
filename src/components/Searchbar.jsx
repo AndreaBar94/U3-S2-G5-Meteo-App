@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { Form } from "react-bootstrap";
-
+import logo from "../assets/logo.png";
 
 const auth = "62d27c813f254c1c799dabc5dfdd9ada"
 
@@ -10,8 +10,7 @@ const Searchbar = () => {
     const [search, setSearch] = useState('')
     const [city, setCity] = useState([])
     const [weather, setWeather] = useState([])
-
-    console.log(weather)
+    const [weather2, setWeather2] = useState("");
 
             const handleChange = (e) => {
             setSearch(e.target.value)
@@ -38,6 +37,7 @@ const Searchbar = () => {
                 if (weatherObj.ok) {
                     const weatherData = await weatherObj.json()
                     setWeather(weatherData)
+                    setWeather2(weatherData.weather[0].main)
                 } else {
                     alert('Error fetching results 2')
                 }
@@ -50,14 +50,13 @@ const Searchbar = () => {
             weatherFetch()
         // eslint-disable-next-line react-hooks/exhaustive-deps
         },[city])
-        
-        
 
         return (
-            <Container>
+            <Container className="main">
             <Row>
                 <Col xs={10} className="mx-auto my-3">
-                <h1>Look for your city weather!</h1>
+                    <img src={logo} alt="logo" className="img-fluid" />
+                <h1 className="p-2 m-2">Look for your city weather!</h1>
                 </Col>
                 <Col xs={10} className="mx-auto">
                 <Form onSubmit={handleSubmit}>
@@ -71,8 +70,9 @@ const Searchbar = () => {
                 </Col>
                 <Col xs={10} className="mx-auto mb-5">
                     {weather && (
-                        <p>The weather today in {weather.name} seems to be like {weather.weather[0].main}!</p>
-                    )}
+                        <p className="rounded bg-light p-2 m-2">The weather today in {weather.name} seems to be like {weather2} !</p>
+                    )
+                }
                 </Col>
             </Row>
             </Container>
