@@ -20,7 +20,6 @@ const Searchbar = () => {
     const [temp, setTemp] = useState("");
     const [wind, setWind] = useState('');
     const dispatch = useDispatch();
-    console.log(city)
 
             const handleChange = (e) => {
             setSearch(e.target.value)

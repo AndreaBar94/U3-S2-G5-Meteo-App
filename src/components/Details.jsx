@@ -7,7 +7,7 @@ const auth = "62d27c813f254c1c799dabc5dfdd9ada"
 const Details = () => {
     const predictions = useSelector((state) => state.days.content)
     const [info, setInfo] = useState([]);
-    console.log(info)
+
 
     const fiveDays = async () =>{
         try {
@@ -19,7 +19,7 @@ const Details = () => {
                 alert("Could not get forecast")
             }
         } catch (error) {
-            alert("Could not get forecast" + error.message)
+            alert("Could not get forecast, " + error.message)
         }
     }
 
