@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import logo from "../assets/logo.png";
+import CityInfo from "./CityInfo";
 
 const auth = "62d27c813f254c1c799dabc5dfdd9ada"
 
@@ -54,9 +55,9 @@ const Searchbar = () => {
         return (
             <Container className="main">
             <Row>
-                <Col xs={10} className="mx-auto my-3">
+                <Col xs={10} className="mx-auto m-3">
                     <img src={logo} alt="logo" className="img-fluid" />
-                <h1 className="p-2 m-2">Look for your city weather!</h1>
+                <h1 className="p-4 m-3 text-light bg-secondary rounded bg-opacity-50">Look for your city weather!</h1>
                 </Col>
                 <Col xs={10} className="mx-auto">
                 <Form onSubmit={handleSubmit}>
@@ -68,11 +69,9 @@ const Searchbar = () => {
                     />
                 </Form>
                 </Col>
-                <Col xs={10} className="mx-auto mb-5">
-                    {weather && (
-                        <p className="rounded bg-light p-2 m-2">The weather today in {weather.name} seems to be like {weather2} !</p>
-                    )
-                }
+                <Col xs={10} className="mx-auto m-3">
+                        {weather && (<p className="p-4 fs-3 m-3 text-light bg-secondary rounded bg-opacity-50">The weather today in {weather.name} seems to be like {weather2}!</p>
+                    )}
                 </Col>
             </Row>
             </Container>
