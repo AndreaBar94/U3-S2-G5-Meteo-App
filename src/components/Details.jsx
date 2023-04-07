@@ -8,6 +8,7 @@ const Details = () => {
     const predictions = useSelector((state) => state.days.content)
     const [info, setInfo] = useState([]);
     console.log(info)
+
     const fiveDays = async () =>{
         try {
             const response = await fetch(`http://api.openweathermap.org/data/2.5/forecast?lat=${predictions[0][0].lat}&lon=${predictions[0][0].lon}&appid=${auth}`)
@@ -28,12 +29,12 @@ const Details = () => {
     },[])
 
     return(
-        <Row>
+        <Row className="main">
             <Col md={10}>
                 {info.map((day)=>{
                     return(
                         <>
-                        <p className="">{day.weather[0].description}</p>
+                        <p className="p-4 fs-5 m-3 text-light bg-secondary rounded bg-opacity-50">{day.weather[0].description}, {day.dt_txt}</p>
                         </>
                     )
                 })}
