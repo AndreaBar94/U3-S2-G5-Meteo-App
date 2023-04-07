@@ -6,6 +6,8 @@ import thermometer from "../assets/thermometer.png";
 import clearsky from "../assets/clearsky.png";
 import windlogo from "../assets/windlogo.png";
 import citylogo from "../assets/citylogo.png";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 const auth = "62d27c813f254c1c799dabc5dfdd9ada"
 
@@ -17,7 +19,9 @@ const Searchbar = () => {
     const [sky, setSky] = useState("");
     const [temp, setTemp] = useState("");
     const [wind, setWind] = useState('');
-
+    const dispatch = useDispatch();
+    console.log(city)
+    
             const handleChange = (e) => {
             setSearch(e.target.value)
             }
@@ -29,6 +33,7 @@ const Searchbar = () => {
             if (response.ok) {
                 const data = await response.json()
                 setCity(data)
+                dispatch({type:'DAYS', payload: data})
             } else {
                 alert('Error fetching results 1')
             }
@@ -80,15 +85,15 @@ const Searchbar = () => {
                         {weather && (
                             <>
                             <p className="p-4 fs-5 m-3 text-light bg-secondary rounded bg-opacity-50">
-                                <img src={citylogo} alt="city-logo" width="40px"/> Selected city: {weather.name}</p>
+                                <img className='me-2' src={citylogo} alt="city-logo" width="40px"/>Selected city: <Link to={`/cityDetails`} className="text-decoration-none">{weather.name}</Link> </p>
                             <p className="p-4 fs-5 m-3 text-light bg-secondary rounded bg-opacity-50">
-                                <img src={clearsky} alt="sky-logo" width="40px" /> Sky: {sky}
+                                <img className='me-2' src={clearsky} alt="sky-logo" width="40px" /> Sky: {sky}
                             </p>
                             <p className="p-4 fs-5 m-3 text-light bg-secondary rounded bg-opacity-50">
-                                <img src={windlogo} alt="wind-logo" width="40px"/> Wind speed: {wind} km/h
+                                <img className='me-2' src={windlogo} alt="wind-logo" width="40px"/> Wind speed: {wind} km/h
                             </p>
                             <p className="p-4 fs-5 m-3 text-light bg-secondary rounded bg-opacity-50">
-                                <img src={thermometer} alt="temperature-logo" width="40px"/> Temperature: {temp} °C
+                                <img className='me-2' src={thermometer} alt="temperature-logo" width="40px"/> Temperature: {temp} °C
                             </p>
                             </>
 

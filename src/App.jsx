@@ -2,12 +2,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Searchbar from "./components/Searchbar";
+import Details from "./components/Details";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Searchbar/>}/>
+        <Route path="/cityDetails" element={<Details/>}/>
       </Routes>
     </BrowserRouter>
   );

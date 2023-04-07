@@ -1,17 +1,16 @@
 const initialState = {
-	favourites: {
+	days: {
 		content: [],
 	},
 };
 
 const mainReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case "SEARCH":
+		case "DAYS":
 			return {
 				...state,
-				search: {
-					...state.search,
-					content: [...state.search.content, action.payload],
+				days: {
+					content: [action.payload],
 				},
 			};
 		default:
