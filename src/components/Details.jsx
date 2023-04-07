@@ -31,10 +31,11 @@ const Details = () => {
     return(
         <Row className="main">
             <Col md={10}>
+                <h2 className="p-4 fs-5 m-3 text-light bg-secondary fw-bold rounded bg-opacity-50 text-center">FOR THE NEXT HOURS:</h2>
                 {info.map((day)=>{
                     return(
                         <>
-                        <p className="p-4 fs-5 m-3 text-light bg-secondary rounded bg-opacity-50">{day.weather[0].description}, {day.dt_txt}</p>
+                        <p className="p-4 fs-5 m-3 text-light bg-secondary rounded bg-opacity-50">{day.dt_txt}, {day.weather[0].description}</p>
                         </>
                     )
                 })}

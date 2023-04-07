@@ -21,7 +21,7 @@ const Searchbar = () => {
     const [wind, setWind] = useState('');
     const dispatch = useDispatch();
     console.log(city)
-    
+
             const handleChange = (e) => {
             setSearch(e.target.value)
             }
@@ -96,7 +96,6 @@ const Searchbar = () => {
                                 <img className='me-2' src={thermometer} alt="temperature-logo" width="40px"/> Temperature: {temp} °C
                             </p>
                             </>
-
                     )}
                 </Col>
             </Row>
